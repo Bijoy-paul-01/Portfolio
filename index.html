@@ -1,0 +1,2287 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Bijoy | AI & Machine Learning Engineer Portfolio</title>
+
+  <meta
+    name="description"
+    content="Portfolio of Bijoy Paul - AI, Machine Learning, Data Science, Data Analytics and Software Engineering."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          },
+
+          colors: {
+            brand: {
+              50: "#ecfdf5",
+              100: "#d1fae5",
+              200: "#a7f3d0",
+              300: "#6ee7b7",
+              400: "#34d399",
+              500: "#10b981",
+              600: "#059669",
+              700: "#047857",
+              800: "#065f46",
+              900: "#064e3b",
+              950: "#022c22"
+            },
+
+            slate: {
+              850: "#131b2e",
+              950: "#070b14"
+            }
+          },
+
+          animation: {
+            float: "float 6s ease-in-out infinite"
+          },
+
+          keyframes: {
+            float: {
+              "0%, 100%": {
+                transform: "translateY(0)"
+              },
+
+              "50%": {
+                transform: "translateY(-8px)"
+              }
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- React -->
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.production.min.js"
+  ></script>
+
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+  ></script>
+
+  <!-- Babel -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Portfolio Data -->
+  <script src="./portfolioData.js"></script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #070b14;
+      color: #e2e8f0;
+      font-family: Inter, sans-serif;
+    }
+
+    ::selection {
+      background: rgba(16, 185, 129, 0.3);
+      color: white;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #070b14;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 999px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(
+          rgba(16, 185, 129, 0.035) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(16, 185, 129, 0.035) 1px,
+          transparent 1px
+        );
+
+      background-size: 40px 40px;
+    }
+
+    .glass {
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      backdrop-filter: blur(16px);
+    }
+
+    .card-hover {
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-4px);
+      border-color: rgba(52, 211, 153, 0.35);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .gradient-text {
+      background: linear-gradient(
+        90deg,
+        #34d399,
+        #22d3ee,
+        #34d399
+      );
+
+      background-size: 200% auto;
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
+</head>
+
+<body>
+
+  <div id="root">
+    <div class="min-h-screen flex items-center justify-center bg-[#070b14] text-emerald-400 font-mono text-sm">
+      <div class="flex items-center gap-3">
+        <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Loading Portfolio...</span>
+      </div>
+    </div>
+  </div>
+
+
+  <script type="text/babel">
+
+    const DATA = window.PORTFOLIO_DATA || {};
+
+    const personal = DATA.personal || {};
+    const metrics = Array.isArray(DATA.metrics)
+      ? DATA.metrics
+      : [];
+
+    const skills = DATA.skills || {};
+    const projects = Array.isArray(DATA.projects)
+      ? DATA.projects
+      : [];
+
+    const certifications =
+      Array.isArray(DATA.certifications)
+        ? DATA.certifications
+        : [];
+
+    const experience =
+      Array.isArray(DATA.experience)
+        ? DATA.experience
+        : [];
+
+    const education =
+      Array.isArray(DATA.education)
+        ? DATA.education
+        : [];
+
+    const careerInterests =
+      Array.isArray(DATA.careerInterests)
+        ? DATA.careerInterests
+        : [];
+
+    const additional =
+      DATA.additional || {};
+
+
+    /* =========================================================
+       HELPERS
+    ========================================================= */
+
+    function textValue(value, fallback = "") {
+
+      if (
+        value === null ||
+        value === undefined
+      ) {
+        return fallback;
+      }
+
+      if (
+        typeof value === "string" ||
+        typeof value === "number"
+      ) {
+        return String(value);
+      }
+
+      return fallback;
+    }
+
+
+    function getSocial(name) {
+
+      return (
+        personal.social &&
+        personal.social[name]
+      ) || "";
+    }
+
+
+    /* =========================================================
+       ICON
+    ========================================================= */
+
+    function Icon({ type, size = 20 }) {
+
+      const common = {
+        width: size,
+        height: size,
+        viewBox: "0 0 24 24",
+        fill: "none",
+        stroke: "currentColor",
+        strokeWidth: "2",
+        strokeLinecap: "round",
+        strokeLinejoin: "round"
+      };
+
+
+      if (type === "github") {
+
+        return (
+          <svg {...common}>
+            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.2-.4 6.5-1.6 6.5-7A5.4 5.4 0 0 0 19 4.8 5 5 0 0 0 18.9 1S17.7.6 15 2.5a13.4 13.4 0 0 0-7 0C5.3.6 4.1 1 4.1 1A5 5 0 0 0 4 4.8 5.4 5.4 0 0 0 2.5 8.5c0 5.4 3.3 6.6 6.5 7A4.8 4.8 0 0 0 8 18v4" />
+            <path d="M8 21c-4 2-4-2-5-2" />
+          </svg>
+        );
+      }
+
+
+      if (type === "linkedin") {
+
+        return (
+          <svg {...common}>
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+        );
+      }
+
+
+      if (type === "mail") {
+
+        return (
+          <svg {...common}>
+            <rect
+              x="3"
+              y="5"
+              width="18"
+              height="14"
+              rx="2"
+            />
+
+            <path d="m3 7 9 6 9-6" />
+          </svg>
+        );
+      }
+
+
+      if (type === "arrow") {
+
+        return (
+          <svg {...common}>
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        );
+      }
+
+
+      if (type === "external") {
+
+        return (
+          <svg {...common}>
+            <path d="M14 3h7v7" />
+            <path d="M10 14 21 3" />
+            <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5" />
+          </svg>
+        );
+      }
+
+
+      if (type === "code") {
+
+        return (
+          <svg {...common}>
+            <path d="m8 9-3 3 3 3" />
+            <path d="m16 9 3 3-3 3" />
+            <path d="m14 5-4 14" />
+          </svg>
+        );
+      }
+
+
+      if (type === "database") {
+
+        return (
+          <svg {...common}>
+            <ellipse
+              cx="12"
+              cy="5"
+              rx="8"
+              ry="3"
+            />
+
+            <path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5" />
+
+            <path d="M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7" />
+          </svg>
+        );
+      }
+
+
+      if (type === "brain") {
+
+        return (
+          <svg {...common}>
+            <path d="M9.5 3.5A3.5 3.5 0 0 0 6 7a3.5 3.5 0 0 0-2 6.3A3.5 3.5 0 0 0 7.5 20H9V4.5a1 1 0 0 0-.5-1Z" />
+
+            <path d="M14.5 3.5A3.5 3.5 0 0 1 18 7a3.5 3.5 0 0 1 2 6.3 3.5 3.5 0 0 1-3.5 6.7H15V4.5a1 1 0 0 1-.5-1Z" />
+
+            <path d="M9 8h1" />
+            <path d="M14 8h1" />
+            <path d="M9 13h1" />
+            <path d="M14 13h1" />
+          </svg>
+        );
+      }
+
+
+      if (type === "menu") {
+
+        return (
+          <svg {...common}>
+            <path d="M4 6h16" />
+            <path d="M4 12h16" />
+            <path d="M4 18h16" />
+          </svg>
+        );
+      }
+
+
+      if (type === "close") {
+
+        return (
+          <svg {...common}>
+            <path d="M6 18 18 6" />
+            <path d="m6 6 12 12" />
+          </svg>
+        );
+      }
+
+
+      return null;
+    }
+
+
+    /* =========================================================
+       NAVBAR
+    ========================================================= */
+
+    function Navbar() {
+
+      const [open, setOpen] =
+        React.useState(false);
+
+
+      const links = [
+        ["Home", "#home"],
+        ["About", "#about"],
+        ["Skills", "#skills"],
+        ["Projects", "#projects"],
+        ["Experience", "#experience"],
+        ["Education", "#education"],
+        ["Contact", "#contact"]
+      ];
+
+
+      return (
+
+        <nav className="
+          fixed top-0 left-0 right-0 z-50
+          bg-slate-950/85
+          backdrop-blur-xl
+          border-b border-slate-800/60
+        ">
+
+          <div className="max-w-7xl mx-auto px-5">
+
+            <div className="
+              h-16
+              flex
+              items-center
+              justify-between
+            ">
+
+              <a
+                href="#home"
+                className="
+                  font-mono
+                  text-lg
+                  font-bold
+                  text-white
+                "
+              >
+
+                <span className="text-brand-400">
+                  &lt;
+                </span>
+
+                Bijoy
+
+                <span className="text-brand-400">
+                  /&gt;
+                </span>
+
+              </a>
+
+
+              <div className="
+                hidden
+                md:flex
+                items-center
+                gap-7
+              ">
+
+                {links.map(([label, href]) => (
+
+                  <a
+                    key={label}
+                    href={href}
+                    className="
+                      text-sm
+                      text-slate-400
+                      hover:text-brand-400
+                      transition
+                    "
+                  >
+                    {label}
+                  </a>
+
+                ))}
+
+
+                <a
+                  href={getSocial("github")}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-slate-400 hover:text-white"
+                >
+                  <Icon type="github" />
+                </a>
+
+
+                <a
+                  href={getSocial("linkedin")}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-slate-400 hover:text-white"
+                >
+                  <Icon type="linkedin" />
+                </a>
+
+              </div>
+
+
+              <button
+                onClick={() => setOpen(!open)}
+                className="md:hidden text-slate-300"
+              >
+                <Icon
+                  type={open ? "close" : "menu"}
+                />
+              </button>
+
+            </div>
+
+
+            {open && (
+
+              <div className="
+                md:hidden
+                border-t
+                border-slate-800
+                py-4
+              ">
+
+                {links.map(([label, href]) => (
+
+                  <a
+                    key={label}
+                    href={href}
+                    onClick={() => setOpen(false)}
+                    className="
+                      block
+                      py-3
+                      text-slate-300
+                      hover:text-brand-400
+                    "
+                  >
+                    {label}
+                  </a>
+
+                ))}
+
+              </div>
+
+            )}
+
+          </div>
+
+        </nav>
+      );
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    function Hero() {
+
+      const bio = Array.isArray(personal.bio)
+        ? personal.bio
+        : [textValue(personal.bio)];
+
+
+      return (
+
+        <section
+          id="home"
+          className="
+            min-h-screen
+            flex
+            items-center
+            relative
+            overflow-hidden
+            grid-bg
+          "
+        >
+
+          <div className="
+            absolute
+            w-96
+            h-96
+            bg-brand-500/10
+            rounded-full
+            blur-3xl
+            top-32
+            left-1/2
+            -translate-x-1/2
+          " />
+
+
+          <div className="
+            relative
+            max-w-7xl
+            mx-auto
+            px-5
+            py-32
+            w-full
+          ">
+
+            <div className="max-w-4xl">
+
+              <div className="
+                inline-flex
+                items-center
+                gap-2
+                px-3
+                py-2
+                mb-7
+                rounded-full
+                border
+                border-brand-500/20
+                bg-brand-500/5
+                text-brand-300
+                text-xs
+                font-mono
+              ">
+
+                <span className="
+                  w-2
+                  h-2
+                  rounded-full
+                  bg-brand-400
+                  animate-pulse
+                " />
+
+                {textValue(
+                  personal.statusIndicator,
+                  "Available for new roles"
+                )}
+
+              </div>
+
+
+              <p className="
+                font-mono
+                text-brand-400
+                mb-4
+              ">
+                Hello, I'm
+              </p>
+
+
+              <h1 className="
+                text-5xl
+                sm:text-6xl
+                md:text-8xl
+                font-extrabold
+                tracking-tight
+                text-white
+              ">
+                {textValue(
+                  personal.name,
+                  "Bijoy"
+                )}{" "}
+                {textValue(
+                  personal.surname
+                )}
+              </h1>
+
+
+              <h2 className="
+                mt-5
+                text-2xl
+                sm:text-3xl
+                md:text-4xl
+                font-bold
+              ">
+
+                <span className="gradient-text">
+                  {textValue(
+                    personal.title,
+                    "AI / Machine Learning & Data Science Student"
+                  )}
+                </span>
+
+              </h2>
+
+
+              <p className="
+                mt-6
+                text-brand-300
+                font-mono
+                text-sm
+              ">
+                {textValue(
+                  personal.tagline
+                )}
+              </p>
+
+
+              <div className="
+                mt-6
+                max-w-2xl
+                space-y-3
+                text-slate-400
+                text-lg
+                leading-8
+              ">
+
+                {bio.map((paragraph, index) => (
+
+                  <p key={index}>
+                    {textValue(paragraph)}
+                  </p>
+
+                ))}
+
+              </div>
+
+
+              <div className="
+                mt-9
+                flex
+                flex-wrap
+                gap-4
+              ">
+
+                <a
+                  href="#projects"
+                  className="
+                    inline-flex
+                    items-center
+                    gap-2
+                    px-6
+                    py-3
+                    rounded-lg
+                    bg-brand-500
+                    text-slate-950
+                    font-semibold
+                    hover:bg-brand-400
+                    transition
+                  "
+                >
+                  View Projects
+
+                  <Icon
+                    type="arrow"
+                    size={17}
+                  />
+
+                </a>
+
+
+                <a
+                  href={`mailto:${textValue(
+                    personal.email
+                  )}`}
+                  className="
+                    inline-flex
+                    items-center
+                    gap-2
+                    px-6
+                    py-3
+                    rounded-lg
+                    border
+                    border-slate-700
+                    text-slate-200
+                    hover:border-brand-500/50
+                    hover:text-brand-400
+                    transition
+                  "
+                >
+                  Contact Me
+
+                  <Icon
+                    type="mail"
+                    size={17}
+                  />
+
+                </a>
+
+              </div>
+
+
+              <div className="
+                mt-12
+                grid
+                grid-cols-2
+                md:grid-cols-4
+                gap-5
+              ">
+
+                {metrics.map((metric, index) => (
+
+                  <div
+                    key={index}
+                    className="glass rounded-xl p-5"
+                  >
+
+                    <div className="
+                      text-2xl
+                      font-bold
+                      text-white
+                    ">
+                      {textValue(metric.value)}
+                    </div>
+
+                    <div className="
+                      text-xs
+                      text-brand-400
+                      mt-2
+                      font-medium
+                    ">
+                      {textValue(metric.label)}
+                    </div>
+
+                  </div>
+
+                ))}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+      );
+    }
+
+
+    /* =========================================================
+       SECTION TITLE
+    ========================================================= */
+
+    function SectionTitle({
+      number,
+      title,
+      description
+    }) {
+
+      return (
+
+        <div className="mb-12">
+
+          <p className="
+            font-mono
+            text-sm
+            text-brand-400
+            mb-3
+          ">
+            {number}
+          </p>
+
+          <h2 className="
+            text-3xl
+            md:text-5xl
+            font-bold
+            text-white
+          ">
+            {title}
+          </h2>
+
+          {description && (
+
+            <p className="
+              mt-4
+              max-w-2xl
+              text-slate-400
+              leading-7
+            ">
+              {description}
+            </p>
+
+          )}
+
+        </div>
+      );
+    }
+
+
+    /* =========================================================
+       ABOUT
+    ========================================================= */
+
+    function About() {
+
+      return (
+
+        <section
+          id="about"
+          className="
+            py-24
+            border-t
+            border-slate-800/50
+          "
+        >
+
+          <div className="
+            max-w-7xl
+            mx-auto
+            px-5
+          ">
+
+            <SectionTitle
+              number="01 / ABOUT"
+              title="Building with data & intelligence."
+              description="A practical approach to artificial intelligence, machine learning, analytics and software engineering."
+            />
+
+
+            <div className="
+              grid
+              md:grid-cols-3
+              gap-6
+            ">
+
+              <div className="
+                md:col-span-2
+                glass
+                rounded-2xl
+                p-7
+                card-hover
+              ">
+
+                <h3 className="
+                  text-xl
+                  font-semibold
+                  text-white
+                ">
+                  About Me
+                </h3>
+
+
+                <p className="
+                  mt-4
+                  text-slate-400
+                  leading-7
+                ">
+                  {textValue(
+                    personal.bio?.[0]
+                  )}
+                </p>
+
+
+                <p className="
+                  mt-4
+                  text-slate-400
+                  leading-7
+                ">
+                  {textValue(
+                    personal.bio?.[1]
+                  )}
+                </p>
+
+              </div>
+
+
+              <div className="
+                glass
+                rounded-2xl
+                p-7
+                card-hover
+              ">
+
+                <p className="
+                  text-sm
+                  text-slate-500
+                ">
+                  Location
+                </p>
+
+                <p className="
+                  mt-2
+                  text-lg
+                  text-white
+                ">
+                  {textValue(
+                    personal.location
+                  )}
+                </p>
+
+
+                <p className="
+                  text-sm
+                  text-slate-500
+                  mt-7
+                ">
+                  Availability
+                </p>
+
+                <p className="
+                  mt-2
+                  text-sm
+                  text-brand-400
+                  leading-6
+                ">
+                  {textValue(
+                    personal.availability
+                  )}
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+      );
+    }
+
+
+    /* =========================================================
+       SKILLS
+    ========================================================= */
+
+    function Skills() {
+
+      const domainSkills =
+        Array.isArray(skills.coreDomains)
+          ? skills.coreDomains
+          : [];
+
+      const frameworkSkills =
+        Array.isArray(skills.frameworks)
+          ? skills.frameworks
+          : [];
+
+      const dataTools =
+        Array.isArray(skills.dataTools)
+          ? skills.dataTools
+          : [];
+
+      const developerTools =
+        Array.isArray(skills.developerTools)
+          ? skills.developerTools
+          : [];
+
+      const languages =
+        Array.isArray(skills.languages)
+          ? skills.languages
+          : [];
+
+
+      return (
+
+        <section
+          id="skills"
+          className="py-24"
+        >
+
+          <div className="
+            max-w-7xl
+            mx-auto
+            px-5
+          ">
+
+            <SectionTitle
+              number="02 / SKILLS"
+              title="Technical toolkit."
+              description="Technologies and tools I use to build, analyze and test practical solutions."
+            />
+
+
+            <div className="
+              grid
+              md:grid-cols-2
+              gap-6
+            ">
+
+              <div className="
+                glass
+                rounded-2xl
+                p-7
+              ">
+
+                <h3 className="
+                  text-xl
+                  font-semibold
+                  text-white
+                  mb-6
+                ">
+                  Core Domains
+                </h3>
+
+
+                <div className="space-y-5">
+
+                  {domainSkills.map(
+                    (skill, index) => (
+
+                      <div key={index}>
+
+                        <div className="
+                          flex
+                          justify-between
+                          mb-2
+                        ">
+
+                          <span className="
+                            text-sm
+                            text-slate-300
+                          ">
+                            {textValue(
+                              skill.name
+                            )}
+                          </span>
+
+                          <span className="
+                            text-xs
+                            text-brand-400
+                            font-mono
+                          ">
+                            {skill.level}%
+                          </span>
+
+                        </div>
+
+
+                        <div className="
+                          h-2
+                          bg-slate-800
+                          rounded-full
+                          overflow-hidden
+                        ">
+
+                          <div
+                            className="
+                              h-full
+                              bg-brand-500
+                              rounded-full
+                            "
+                            style={{
+                              width: `${skill.level || 0}%`
+                            }}
+                          />
+
+                        </div>
+
+                      </div>
+
+                    )
+                  )}
+
+                </div>
+
+              </div>
+
+
+              <SkillCard
+                title="Frameworks & Libraries"
+                items={frameworkSkills}
+              />
+
+
+              <SkillCard
+                title="Data & Analytics"
+                items={dataTools}
+              />
+
+
+              <SkillCard
+                title="Developer Tools"
+                items={developerTools}
+              />
+
+
+              <div className="
+                glass
+                rounded-2xl
+                p-7
+                md:col-span-2
+              ">
+
+                <h3 className="
+                  text-xl
+                  font-semibold
+                  text-white
+                  mb-6
+                ">
+                  Programming Languages
+                </h3>
+
+
+                <div className="
+                  grid
+                  sm:grid-cols-2
+                  lg:grid-cols-5
+                  gap-4
+                ">
+
+                  {languages.map(
+                    (language, index) => (
+
+                      <div
+                        key={index}
+                        className="
+                          rounded-xl
+                          border
+                          border-slate-700
+                          bg-slate-900/50
+                          p-4
+                        "
+                      >
+
+                        <p className="
+                          text-white
+                          font-medium
+                        ">
+                          {textValue(
+                            language.name
+                          )}
+                        </p>
+
+                        <p className="
+                          text-xs
+                          text-brand-400
+                          mt-1
+                        ">
+                          {textValue(
+                            language.mastery
+                          )}
+                        </p>
+
+                      </div>
+
+                    )
+                  )}
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+      );
+    }
+
+
+    function SkillCard({ title, items }) {
+
+      return (
+
+        <div className="
+          glass
+          rounded-2xl
+          p-7
+        ">
+
+          <h3 className="
+            text-xl
+            font-semibold
+            text-white
+            mb-6
+          ">
+            {title}
+          </h3>
+
+
+          <div className="
+            flex
+            flex-wrap
+            gap-2
+          ">
+
+            {items.map((item, index) => (
+
+              <span
+                key={index}
+                className="
+                  px-3
+                  py-2
+                  rounded-lg
+                  bg-slate-800/80
+                  border
+                  border-slate-700/60
+                  text-sm
+                  text-slate-300
+                "
+              >
+                {textValue(item)}
+              </span>
+
+            ))}
+
+          </div>
+
+        </div>
+      );
+    }
+
+
+    /* =========================================================
+       PROJECTS
+    ========================================================= */
+
+    function Projects() {
+
+      return (
+
+        <section
+          id="projects"
+          className="
+            py-24
+            border-t
+            border-slate-800/50
+          "
+        >
+
+          <div className="
+            max-w-7xl
+            mx-auto
+            px-5
+          ">
+
+            <SectionTitle
+              number="03 / PROJECTS"
+              title="Things I've built."
+              description="Selected projects across machine learning, AI, analytics and software testing."
+            />
+
+
+            <div className="
+              grid
+              md:grid-cols-2
+              gap-6
+            ">
+
+              {projects.map(
+                (project, index) => (
+
+                  <article
+                    key={project.id || index}
+                    className="
+                      glass
+                      rounded-2xl
+                      p-7
+                      card-hover
+                    "
+                  >
+
+                    <div className="
+                      flex
+                      items-start
+                      justify-between
+                      gap-4
+                    ">
+
+                      <span className="
+                        px-3
+                        py-1
+                        rounded-full
+                        bg-brand-500/10
+                        text-brand-400
+                        text-xs
+                        font-mono
+                      ">
+                        {textValue(
+                          project.category
+                        )}
+                      </span>
+
+
+                      {project.featured && (
+
+                        <span className="
+                          text-xs
+                          text-slate-500
+                          font-mono
+                        ">
+                          FEATURED
+                        </span>
+
+                      )}
+
+                    </div>
+
+
+                    <h3 className="
+                      mt-6
+                      text-xl
+                      font-semibold
+                      text-white
+                    ">
+                      {textValue(
+                        project.title
+                      )}
+                    </h3>
+
+
+                    <p className="
+                      mt-2
+                      text-brand-400
+                      text-sm
+                    ">
+                      {textValue(
+                        project.subtitle
+                      )}
+                    </p>
+
+
+                    <p className="
+                      mt-4
+                      text-slate-400
+                      leading-7
+                    ">
+                      {textValue(
+                        project.description
+                      )}
+                    </p>
+
+
+                    <div className="
+                      mt-5
+                      p-3
+                      rounded-lg
+                      bg-slate-900/70
+                      border
+                      border-slate-800
+                      text-xs
+                      text-slate-400
+                      font-mono
+                    ">
+                      {textValue(
+                        project.metric
+                      )}
+                    </div>
+
+
+                    <div className="
+                      mt-5
+                      flex
+                      flex-wrap
+                      gap-2
+                    ">
+
+                      {(project.tags || []).map(
+                        (tag, tagIndex) => (
+
+                          <span
+                            key={tagIndex}
+                            className="
+                              px-2.5
+                              py-1
+                              rounded-md
+                              bg-slate-800
+                              text-slate-400
+                              text-xs
+                            "
+                          >
+                            {textValue(tag)}
+                          </span>
+
+                        )
+                      )}
+
+                    </div>
+
+
+                    {project.architectureSummary && (
+
+                      <div className="mt-6">
+
+                        <p className="
+                          text-xs
+                          text-slate-600
+                          uppercase
+                          tracking-wider
+                          mb-2
+                        ">
+                          Architecture
+                        </p>
+
+                        <p className="
+                          text-xs
+                          text-slate-500
+                          leading-6
+                        ">
+                          {textValue(
+                            project.architectureSummary
+                          )}
+                        </p>
+
+                      </div>
+
+                    )}
+
+
+                    <div className="
+                      mt-6
+                      flex
+                      gap-5
+                    ">
+
+                      {project.github && (
+
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="
+                            inline-flex
+                            items-center
+                            gap-2
+                            text-sm
+                            text-brand-400
+                            hover:text-brand-300
+                          "
+                        >
+
+                          <Icon
+                            type="github"
+                            size={17}
+                          />
+
+                          GitHub
+
+                        </a>
+
+                      )}
+
+                    </div>
+
+                  </article>
+
+                )
+              )}
+
+            </div>
+
+          </div>
+
+        </section>
+      );
+    }
+
+
+    /* =========================================================
+       EXPERIENCE
+    ========================================================= */
+
+    function Experience() {
+
+      return (
+
+        <section
+          id="experience"
+          className="py-24"
+        >
+
+          <div className="
+            max-w-7xl
+            mx-auto
+            px-5
+          ">
+
+            <SectionTitle
+              number="04 / EXPERIENCE"
+              title="Experience & training."
+            />
+
+
+            <div className="space-y-6">
+
+              {experience.map(
+                (item, index) => (
+
+                  <div
+                    key={index}
+                    className="
+                      glass
+                      rounded-2xl
+                      p-7
+                    "
+                  >
+
+                    <div className="
+                      flex
+                      flex-col
+                      md:flex-row
+                      md:justify-between
+                      gap-3
+                    ">
+
+                      <div>
+
+                        <h3 className="
+                          text-xl
+                          font-semibold
+                          text-white
+                        ">
+                          {textValue(
+                            item.role
+                          )}
+                        </h3>
+
+                        <p className="
+                          mt-1
+                          text-brand-400
+                        ">
+                          {textValue(
+                            item.company
+                          )}
+                        </p>
+
+                      </div>
+
+
+                      <p className="
+                        text-xs
+                        text-slate-500
+                        font-mono
+                      ">
+                        {textValue(
+                          item.period
+                        )}
+                      </p>
+
+                    </div>
+
+
+                    <p className="
+                      mt-1
+                      text-xs
+                      text-slate-600
+                    ">
+                      {textValue(
+                        item.location
+                      )}
+                    </p>
+
+
+                    <ul className="
+                      mt-5
+                      space-y-3
+                    ">
+
+                      {(item.achievements || [])
+                        .map(
+                          (achievement, i) => (
+
+                            <li
+                              key={i}
+                              className="
+                                flex
+                                gap-3
+                                text-slate-400
+                                leading-7
+                              "
+                            >
+
+                              <span className="
+                                text-brand-400
+                                mt-1
+                              ">
+                                •
+                              </span>
+
+                              <span>
+                                {textValue(
+                                  achievement
+                                )}
+                              </span>
+
+                            </li>
+
+                          )
+                        )}
+
+                    </ul>
+
+                  </div>
+
+                )
+              )}
+
+            </div>
+
+          </div>
+
+        </section>
+      );
+    }
+
+
+    /* =========================================================
+       CERTIFICATIONS
+    ========================================================= */
+
+    function Certifications() {
+
+      return (
+
+        <section
+          className="
+            py-24
+            border-t
+            border-slate-800/50
+          "
+        >
+
+          <div className="
+            max-w-7xl
+            mx-auto
+            px-5
+          ">
+
+            <SectionTitle
+              number="05 / CERTIFICATIONS"
+              title="Credentials."
+            />
+
+
+            <div className="
+              grid
+              md:grid-cols-2
+              lg:grid-cols-3
+              gap-5
+            ">
+
+              {certifications.map(
+                (certification, index) => (
+
+                  <div
+                    key={index}
+                    className="
+                      glass
+                      rounded-2xl
+                      p-6
+                      card-hover
+                    "
+                  >
+
+                    <div className="
+                      w-10
+                      h-10
+                      rounded-lg
+                      bg-brand-500/10
+                      text-brand-400
+                      flex
+                      items-center
+                      justify-center
+                      font-mono
+                    ">
+                      {String(index + 1).padStart(2, "0")}
+                    </div>
+
+
+                    <h3 className="
+                      mt-5
+                      font-semibold
+                      text-white
+                    ">
+                      {textValue(
+                        certification.title
+                      )}
+                    </h3>
+
+
+                    <p className="
+                      mt-2
+                      text-sm
+                      text-brand-400
+                    ">
+                      {textValue(
+                        certification.issuer
+                      )}
+                    </p>
+
+
+                    <p className="
+                      mt-3
+                      text-sm
+                      text-slate-500
+                      leading-6
+                    ">
+                      {textValue(
+                        certification.description
+                      )}
+                    </p>
+
+                  </div>
+
+                )
+              )}
+
+            </div>
+
+          </div>
+
+        </section>
+      );
+    }
+
+
+    /* =========================================================
+       EDUCATION
+    ========================================================= */
+
+    function Education() {
+
+      return (
+
+        <section
+          id="education"
+          className="py-24"
+        >
+
+          <div className="
+            max-w-7xl
+            mx-auto
+            px-5
+          ">
+
+            <SectionTitle
+              number="06 / EDUCATION"
+              title="Academic background."
+            />
+
+
+            <div className="space-y-5">
+
+              {education.map(
+                (item, index) => (
+
+                  <div
+                    key={index}
+                    className="
+                      glass
+                      rounded-2xl
+                      p-7
+                    "
+                  >
+
+                    <div className="
+                      flex
+                      flex-col
+                      md:flex-row
+                      md:justify-between
+                      gap-3
+                    ">
+
+                      <div>
+
+                        <h3 className="
+                          text-xl
+                          font-semibold
+                          text-white
+                        ">
+                          {textValue(
+                            item.degree
+                          )}
+                        </h3>
+
+                        <p className="
+                          mt-2
+                          text-brand-400
+                        ">
+                          {textValue(
+                            item.institution
+                          )}
+                        </p>
+
+                      </div>
+
+
+                      <p className="
+                        text-xs
+                        text-slate-500
+                        font-mono
+                      ">
+                        {textValue(
+                          item.period
+                        )}
+                      </p>
+
+                    </div>
+
+
+                    <p className="
+                      mt-4
+                      text-slate-400
+                      leading-7
+                    ">
+                      {textValue(
+                        item.details
+                      )}
+                    </p>
+
+                  </div>
+
+                )
+              )}
+
+            </div>
+
+          </div>
+
+        </section>
+      );
+    }
+
+
+    /* =========================================================
+       CAREER INTERESTS
+    ========================================================= */
+
+    function CareerInterests() {
+
+      return (
+
+        <section className="py-20">
+
+          <div className="
+            max-w-7xl
+            mx-auto
+            px-5
+          ">
+
+            <div className="
+              glass
+              rounded-2xl
+              p-8
+            ">
+
+              <p className="
+                font-mono
+                text-sm
+                text-brand-400
+                mb-5
+              ">
+                CAREER INTERESTS
+              </p>
+
+
+              <div className="
+                flex
+                flex-wrap
+                gap-3
+              ">
+
+                {careerInterests.map(
+                  (interest, index) => (
+
+                    <span
+                      key={index}
+                      className="
+                        px-4
+                        py-2
+                        rounded-lg
+                        border
+                        border-slate-700
+                        bg-slate-900/50
+                        text-slate-300
+                      "
+                    >
+                      {textValue(interest)}
+                    </span>
+
+                  )
+                )}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+      );
+    }
+
+
+    /* =========================================================
+       CONTACT
+    ========================================================= */
+
+    function Contact() {
+
+      return (
+
+        <section
+          id="contact"
+          className="py-24"
+        >
+
+          <div className="
+            max-w-4xl
+            mx-auto
+            px-5
+            text-center
+          ">
+
+            <p className="
+              font-mono
+              text-sm
+              text-brand-400
+              mb-4
+            ">
+              07 / CONTACT
+            </p>
+
+
+            <h2 className="
+              text-4xl
+              md:text-6xl
+              font-bold
+              text-white
+            ">
+              Let's build something useful.
+            </h2>
+
+
+            <p className="
+              mt-6
+              text-slate-400
+              text-lg
+              leading-8
+            ">
+              Open to opportunities in AI, Machine Learning,
+              Data Science, Data Analytics, SQL, BI and
+              Software Engineering.
+            </p>
+
+
+            <div className="
+              mt-8
+              flex
+              flex-wrap
+              justify-center
+              gap-4
+            ">
+
+              <a
+                href={`mailto:${textValue(
+                  personal.email
+                )}`}
+                className="
+                  inline-flex
+                  items-center
+                  gap-2
+                  px-6
+                  py-3
+                  rounded-lg
+                  bg-brand-500
+                  text-slate-950
+                  font-semibold
+                  hover:bg-brand-400
+                  transition
+                "
+              >
+
+                <Icon
+                  type="mail"
+                  size={18}
+                />
+
+                Email Me
+
+              </a>
+
+
+              <a
+                href={getSocial("github")}
+                target="_blank"
+                rel="noreferrer"
+                className="
+                  inline-flex
+                  items-center
+                  gap-2
+                  px-6
+                  py-3
+                  rounded-lg
+                  border
+                  border-slate-700
+                  text-slate-200
+                  hover:border-brand-500/50
+                  transition
+                "
+              >
+
+                <Icon
+                  type="github"
+                  size={18}
+                />
+
+                GitHub
+
+              </a>
+
+
+              <a
+                href={getSocial("linkedin")}
+                target="_blank"
+                rel="noreferrer"
+                className="
+                  inline-flex
+                  items-center
+                  gap-2
+                  px-6
+                  py-3
+                  rounded-lg
+                  border
+                  border-slate-700
+                  text-slate-200
+                  hover:border-brand-500/50
+                  transition
+                "
+              >
+
+                <Icon
+                  type="linkedin"
+                  size={18}
+                />
+
+                LinkedIn
+
+              </a>
+
+            </div>
+
+          </div>
+
+        </section>
+      );
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    function Footer() {
+
+      return (
+
+        <footer className="
+          border-t
+          border-slate-800/50
+          py-8
+        ">
+
+          <div className="
+            max-w-7xl
+            mx-auto
+            px-5
+            flex
+            flex-col
+            md:flex-row
+            justify-between
+            gap-4
+          ">
+
+            <p className="
+              text-sm
+              text-slate-500
+            ">
+              © {new Date().getFullYear()} Bijoy Paul.
+              All rights reserved.
+            </p>
+
+
+            <div className="flex gap-5">
+
+              <a
+                href={getSocial("github")}
+                target="_blank"
+                rel="noreferrer"
+                className="
+                  text-slate-500
+                  hover:text-brand-400
+                "
+              >
+                GitHub
+              </a>
+
+
+              <a
+                href={getSocial("linkedin")}
+                target="_blank"
+                rel="noreferrer"
+                className="
+                  text-slate-500
+                  hover:text-brand-400
+                "
+              >
+                LinkedIn
+              </a>
+
+            </div>
+
+          </div>
+
+        </footer>
+      );
+    }
+
+
+    /* =========================================================
+       APP
+    ========================================================= */
+
+    function App() {
+
+      return (
+
+        <div className="min-h-screen">
+
+          <Navbar />
+
+          <main>
+
+            <Hero />
+
+            <About />
+
+            <Skills />
+
+            <Projects />
+
+            <Experience />
+
+            <Certifications />
+
+            <Education />
+
+            <CareerInterests />
+
+            <Contact />
+
+          </main>
+
+          <Footer />
+
+        </div>
+      );
+    }
+
+
+    /* =========================================================
+       START REACT
+    ========================================================= */
+
+    const rootElement =
+      document.getElementById("root");
+
+
+    if (!rootElement) {
+
+      console.error(
+        "React root element was not found."
+      );
+
+    } else {
+
+      const root =
+        ReactDOM.createRoot(rootElement);
+
+      root.render(<App />);
+
+    }
+
+  </script>
+
+</body>
+</html>
