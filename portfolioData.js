@@ -12,7 +12,7 @@ window.PORTFOLIO_DATA = {
   personal: {
     name: "Bijoy",
     surname: "Paul",
-    title: "AI / Machine Learning & Data Science Student",
+    title: "Aarificial Intelligence and Machine Learning Student",
     tagline: "Building practical AI, machine learning, data analytics, and intelligent applications.",
     location: "Kolkata, India",
     email: "bijoypaul0106@gmail.com",
@@ -138,11 +138,11 @@ window.PORTFOLIO_DATA = {
       },
       {
         name: "C / C++",
-        mastery: "Basic"
+        mastery: "Strong"
       },
       {
         name: "Java",
-        mastery: "Basic"
+        mastery: "Strong"
       },
       {
         name: "VB.NET",
@@ -197,50 +197,6 @@ window.PORTFOLIO_DATA = {
           "Compared multiple machine learning approaches",
           "Implemented hyperparameter tuning using GridSearchCV",
           "Developed a neural network using TensorFlow and Keras"
-        ]
-      }
-    },
-
-
-    {
-      id: "ai-meeting-assistant",
-      title: "AI Meeting Assistant",
-      subtitle: "Meeting Transcription, Summarization & Intelligent Q&A",
-      category: "Generative AI",
-      tags: [
-        "Python",
-        "Whisper",
-        "LangChain",
-        "Mistral",
-        "ChromaDB",
-        "Hugging Face",
-        "Streamlit"
-      ],
-
-      metric: "Audio → Transcript → Summary → RAG-based Q&A",
-
-      featured: true,
-
-      description:
-        "Developed an AI meeting assistant that processes uploaded or YouTube audio, generates transcripts using Whisper, creates summaries and action items using an LLM, and enables users to ask questions about meeting content using a vector database.",
-
-      architectureSummary:
-        "Audio/YouTube Input -> Whisper Transcription -> Language Processing -> LLM Summarization -> ChromaDB -> RAG Q&A -> Streamlit",
-
-      caseStudy: {
-
-        problem:
-          "Long meetings and recorded discussions are difficult to review manually when users need quick access to decisions, action items, and specific information.",
-
-        solution:
-          "Built an end-to-end AI pipeline combining speech-to-text, LLM-based summarization, embeddings, vector search and an interactive Streamlit interface.",
-
-        results: [
-          "Automated meeting transcription",
-          "Generated summaries, decisions and action items",
-          "Implemented document-based question answering",
-          "Added PDF and text export functionality",
-          "Built an interactive Streamlit interface"
         ]
       }
     },
@@ -374,29 +330,6 @@ window.PORTFOLIO_DATA = {
       }
     },
 
-
-    {
-      id: "tic-tac-toe-vbnet",
-      title: "Tic Tac Toe Game",
-      subtitle: "Desktop Application using VB.NET",
-      category: "Software Development",
-      tags: [
-        "VB.NET",
-        "Desktop Application",
-        "Object-Oriented Programming"
-      ],
-
-      metric: "Interactive two-player desktop application",
-
-      featured: false,
-
-      description:
-        "Developed a simple interactive Tic Tac Toe desktop application using VB.NET as part of application development training.",
-
-      architectureSummary:
-        "User Input -> Game Logic -> Win/Draw Detection -> UI Feedback"
-    }
-
   ],
 
 
@@ -446,29 +379,18 @@ window.PORTFOLIO_DATA = {
   experience: [
 
     {
-      period: "2025 - Present",
-      role: "MCA Student & AI / Data Science Project Developer",
-      company: "Adamas University",
-      location: "Kolkata, India",
+      period: "June 2026 - July 2026",
+      role: "Machine Learning and AI Intern",
+      company: "BeeSkilled",
+      location: "Haryana, India",
 
       achievements: [
-        "Developing practical machine learning, deep learning and data analytics projects as part of academic and independent learning.",
-        "Working with Python, SQL, TensorFlow, Scikit-Learn, Power BI and modern AI frameworks.",
-        "Building end-to-end AI applications involving machine learning, NLP, speech processing and retrieval-based systems."
+        "Completed hands-on training in Machine Learning, Artificial Intelligence, and Data Science using Python, Pandas, Numpy, and Scikit-learn.",
+        "Performed data preprocessing, feature engineering, EDA, and implemented supervised learning algorithms including Logistic Regression, Decision Trees, Random Forest, and SVM.",
+        "Applied TensorFlow for model development and evaluated models using Accuracy, Precision, Recall, and F1-score, while gaining practical experience with Git and GitHub."
       ]
     },
 
-    {
-      period: "2026",
-      role: "Web Development Training",
-      company: "Euphoria GenX Pvt. Ltd.",
-      location: "India",
-
-      achievements: [
-        "Completed industrial training focused on web development using Python.",
-        "Worked on practical web development concepts and application development workflows."
-      ]
-    }
   ],
 
 
