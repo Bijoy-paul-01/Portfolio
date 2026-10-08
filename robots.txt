@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bijoy-paul-01.github.io/Portfolio/sitemap.xml

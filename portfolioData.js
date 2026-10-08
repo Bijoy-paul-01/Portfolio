@@ -12,7 +12,7 @@ window.PORTFOLIO_DATA = {
   personal: {
     name: "Bijoy",
     surname: "Paul",
-    title: "Aarificial Intelligence and Machine Learning Student",
+    title: "Artificial Intelligence and Machine Learning Student",
     tagline: "Building practical AI, machine learning, data analytics, and intelligent applications.",
     location: "Kolkata, India",
     email: "bijoypaul0106@gmail.com",
